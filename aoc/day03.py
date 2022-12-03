@@ -23,13 +23,12 @@ def reorganization(sacks):
         item_set = disjoint(comp1, comp2)
         item = item_set.pop()
         items.append(priority(item))
-        itemsum += priority(item)
         if count == 3:
             count = 0
             badge_set = disjoint(set(sacks[i]), disjoint(set(sacks[i-1]), set(sacks[i-2])))
             badge = badge_set.pop()
             badges.append(priority(badge))
-    return sum(items), sum(badges), itemsum
+    return sum(items), sum(badges)
 
 
 ### tests

@@ -39,7 +39,7 @@ def test_1():
     assert part_1 == 2
 
 def test_2():
-        assert part_2 == 4
+    assert part_2 == 4
 
 print(cleanup(assignments))
 

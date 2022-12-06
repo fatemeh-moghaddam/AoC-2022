@@ -45,5 +45,4 @@ def test_2():
 print(f"part 1: {part_1(strategy)}")
 print(f"part 2: {part_2(strategy)}")
 
-# print(f"part 1: {part_1(test_input)}")
-# print(f"part 2: {part_2(test_input)}")
+

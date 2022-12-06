@@ -1,4 +1,3 @@
-
 def sum_cal(input_file):
     elf_num = 0
     elves = [0]
@@ -25,22 +24,3 @@ def test_1():
 
 def test_2():
         assert part_2 == 45000
-
-
-
-
-
-
-
-
-
-
-    # elves = dict()
-    # for line in cals:
-    #     if line == "\n":
-    #         elf_num += 1
-    #         continue
-    #     if elf_num in elves:
-    #         elves[elf_num] += int(line)
-    #     else:
-    #         elves[elf_num] = int(line)

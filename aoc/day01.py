@@ -23,4 +23,4 @@ def test_1():
     assert part_1 == 24000
 
 def test_2():
-        assert part_2 == 45000
+    assert part_2 == 45000

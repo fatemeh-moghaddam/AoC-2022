@@ -40,7 +40,7 @@ def test_1():
     assert part_1(test_input) == 15
 
 def test_2():
-        assert part_2(test_input) == 12
+    assert part_2(test_input) == 12
 
 print(f"part 1: {part_1(strategy)}")
 print(f"part 2: {part_2(strategy)}")

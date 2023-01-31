@@ -54,18 +54,17 @@ def fall(cave, pos):
 def reservoir(path_map):
     cave, wall = read_cave(path_map)
     ys = 0
-    pos = (500,0)
     count = 0
     while ys < wall:
+        # reset the starting position
+        pos = (500,0)
         count += 1
-        while pos != (0,0) and ys < wall:
+        while pos != (0,0) and ys < wall: # because we return (0,0) when it's full
             prev = pos
             (xs, ys) = prev
             pos = next(fall(cave, pos))
         # it means that the sand came to rest, or abyss started
         cave[prev] = 'o'
-        # reset the starting position
-        pos = (500,0)
     # visualize(cave, (15,20))
     return count-1
 
@@ -74,11 +73,13 @@ def reservoir(path_map):
 # this is for part 2
 def pile(path_map):
     cave, wall = read_cave(path_map)
-    ys = 0
-    pos = (500,0)
+
     prev = (0,0)
     count = 0
     while prev != (500,0):
+        # reset the starting position
+        ys = 0
+        pos = (500,0)
         while pos != (0,0) and ys < wall + 2:
             prev = pos
             (xs, ys) = prev
@@ -89,9 +90,6 @@ def pile(path_map):
         else:
             count += 1
             cave[prev] = 'o'
-        # reset the starting position
-        pos = (500,0)
-        ys = 0
     return count
 
 
@@ -122,7 +120,7 @@ with open("day14.txt", "rt") as my_file:
 
 ## for visualization:
 cave , wall = read_cave(test)
-visualize(cave, (15,30))
+# visualize(cave, (15,30))
 
 
 def main(paths):

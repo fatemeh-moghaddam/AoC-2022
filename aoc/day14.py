@@ -6,13 +6,13 @@ def add(cor1, cor2, cave):
     if y2 > y1:
         for y in range(y1, y2+1):
             cave[(x1, y)] = '#'
-    if y2 < y1:
+    else:
         for y in range(y2, y1+1):
             cave[(x1, y)] = '#'
     if x2 > x1:
         for x in range(x1, x2+1):
             cave[(x, y1)] = '#'
-    if x2 < x1:
+    else:
         for x in range(x2, x1+1):
             cave[(x, y1)] = '#'
     return cave, max(y1, y2)
@@ -40,13 +40,13 @@ def read_cave(my_input):
 def fall(cave, pos):
     xs, ys = pos
     if (xs, ys+1) not in cave: # down one step
-        yield (xs, ys+1)
+        return (xs, ys+1)
     elif (xs-1, ys+1) not in cave: # one step down and to the left
-        yield (xs-1, ys+1)
+        return (xs-1, ys+1)
     elif (xs+1, ys+1) not in cave: # one step down and to the right
-        yield (xs+1, ys+1)
+        return (xs+1, ys+1)
     else: # all were full
-        yield (0,0)
+        return (0,0)
 
 
 
@@ -62,7 +62,7 @@ def reservoir(path_map):
         while pos != (0,0) and ys < wall: # because we return (0,0) when it's full
             prev = pos
             (xs, ys) = prev
-            pos = next(fall(cave, pos))
+            pos = fall(cave, pos)
         # it means that the sand came to rest, or abyss started
         cave[prev] = 'o'
     # visualize(cave, (15,20))
@@ -83,7 +83,7 @@ def pile(path_map):
         while pos != (0,0) and ys < wall + 2:
             prev = pos
             (xs, ys) = prev
-            pos = next(fall(cave, pos))
+            pos = fall(cave, pos)
         # it means that the sand came to rest, or abyss started
         if ys == wall + 2:
             cave[prev] = '#'

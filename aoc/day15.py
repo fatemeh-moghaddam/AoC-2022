@@ -59,13 +59,13 @@ def merge_helper(int1, int2):
     if end == b2:
         if min(b1, a2) == a2:
             # this means we have overlap
-            return [(start, end)]
+            return (start, end)
     # same thing, in the other order
     if end == b1:
         if min(b2, a1) == a1:
-            return [(start, end)]
+            return (start, end)
     # no overlap:
-    return []
+    return None
 
 
 # This is mergeing a bunch of intervals
@@ -80,13 +80,13 @@ def merge(intervals):
                 i = temp.pop()
                 merge_out = merge_helper(current, i)
                 if merge_out:
-                    # if we merged two interval, but not to oneself, we need to remove the original intervals
-                    if merge_out[0] != current and current in merged:
+                    # if we merged two interval, we need to remove the original intervals
+                    if current in merged:
                         merged.remove(current)
-                    if merge_out[0] != i and i in merged:
+                    if i in merged:
                         merged.remove(i)
                     # and add the new interval
-                    if merge_out[0] != current and merge_out[0] != i and merge_out[0] not in merged:
+                    if merge_out not in merged:
                         merged.extend(merge_out)
         # we keep doing the merge until there is no more merge to do 
         if Counter(intervals) == Counter(merged):

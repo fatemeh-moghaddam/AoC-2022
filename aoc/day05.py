@@ -28,6 +28,7 @@ def rearrangement(crates):
             for _ in range(boxes):
                 stacks[to-1].append(stacks[fr-1].pop())             # append in the same order you pop
                 stacks2[to-1].append(stacks2[fr-1].pop(n-boxes))    # append as you popped all first, then appended
+                # can be done with a temp also
                 
     for s1, s2 in zip(stacks, stacks2):
         part_1 += s1.pop()

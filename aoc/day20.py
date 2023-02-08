@@ -83,11 +83,14 @@ class DLL:
 
         if where == self.tail: # means we are adding a in the tail's place
             self.tail = node
-        # --A--B--  --C-- ->insert C after A->  --A--C--B--
-
+        
+	# remove C from it's previous position:
+	# --A--C--B-- -> --A--B--  --C-- 
         node.prev.next = node.next
         node.next.prev = node.prev
-
+	
+	# add C to the new location
+	# --A--B--  --C-- -> insert C after A ->  --A--C--B--
         node.prev = where
         node.next = where.next
         where.next.prev = node
@@ -99,11 +102,14 @@ class DLL:
 
         if where == self.head: # means we are adding a in the head's place
             self.head = node
-        # --A--B--  --C-- ->insert C before B->  --A--C--B--
-
+        
+	# remove C from it's previous position:
+	# --A--C--B-- -> --A--B--  --C-- 
         node.prev.next = node.next
         node.next.prev = node.prev
-
+	
+	# add C to the new location
+	# --A--B--  --C-- ->insert C before B->  --A--C--B--
         node.next = where
         node.prev = where.prev
         where.prev.next = node

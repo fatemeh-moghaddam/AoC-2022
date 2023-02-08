@@ -5,7 +5,7 @@ def sum_cal(input_file):
         if line == "\n":
             elf_num += 1
             line = next(input_file)
-            elves.append(0)
+            elves.append(0)         # to start adding directly in the next line
         elves[elf_num] += int(line)
     elves.sort(reverse= True)
     return max(elves), sum(elves[:3])

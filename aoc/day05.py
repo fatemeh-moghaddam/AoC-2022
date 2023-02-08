@@ -4,7 +4,7 @@ with open("day05.txt", "rt") as input_file:
 
 
 def rearrangement(crates):
-    stacks = [[] for i in range(9)]
+    stacks = [[] for i in range(9)] # we have 9 stacks
     part_1 = ''
     part_2 = ''
     flag = True
@@ -13,20 +13,21 @@ def rearrangement(crates):
         if line.find("move") == -1:
             ## this is the positions of crates
             positions = [(pos.start()+1) for pos in re.finditer('\[', line)]
+            # there are 4 spaces between columns in the input file 
             columns = [p//4 for p in positions]
             for i in range(len(columns)):
                 stacks[columns[i]].append(line[positions[i]])
         else:
-            if flag:
+            if flag: # to reverse the stack once
                 flag = False
                 stacks2 = [s[::-1] for s in stacks]
                 stacks = [s[::-1] for s in stacks]
             ## extract numbers from instructions
             [boxes, fr, to] = list(map(int, re.findall('[0-9]+', line)))
-            n = len(stacks2[fr-1])
+            n = len(stacks2[fr-1]) # length of the target stack
             for _ in range(boxes):
-                stacks[to-1].append(stacks[fr-1].pop())
-                stacks2[to-1].append(stacks2[fr-1].pop(n-boxes))
+                stacks[to-1].append(stacks[fr-1].pop())             # append in the same order you pop
+                stacks2[to-1].append(stacks2[fr-1].pop(n-boxes))    # append as you popped all first, then appended
                 
     for s1, s2 in zip(stacks, stacks2):
         part_1 += s1.pop()

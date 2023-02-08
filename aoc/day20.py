@@ -79,7 +79,7 @@ class DLL:
         return
 
 
-    def insert_after(self, where, node):
+    def move_after(self, where, node):
 
         if where == self.tail: # means we are adding a in the tail's place
             self.tail = node
@@ -98,7 +98,7 @@ class DLL:
         
         return
 
-    def insert_before(self, where, node):
+    def move_before(self, where, node):
 
         if where == self.head: # means we are adding a in the head's place
             self.head = node
@@ -141,6 +141,7 @@ def mixing(coors):
             if num == 0:
                 zero = node
                 continue
+	    # This should be n-1 because we will find the node before/after our target	
             iter = abs(num) % (n-1)
             current = node
             for _ in range(iter):
@@ -149,9 +150,9 @@ def mixing(coors):
                 if num < 0:
                     current = current.prev
             if num > 0:
-                codes_dll.insert_after(current, node)
+                codes_dll.move_after(current, node)
             if num < 0:
-                codes_dll.insert_before(current, node)
+                codes_dll.move_before(current, node)
         return zero
 
 
